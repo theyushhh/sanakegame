@@ -3,43 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>Modern Snake Game</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="game-container">
-        <header>
-            <h1>🐍 Snake Game</h1>
-            <div class="score-board">
-                <div class="score">Score: <span id="score">0</span></div>
-                <div class="high-score">High Score: <span id="highScore">0</span></div>
+        <header class="game-header">
+            <div class="logo">
+                <span class="snake-emoji">🐍</span>
+                <h1>Snake Game</h1>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="label">Score</span>
+                    <span class="value" id="score">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">High Score</span>
+                    <span class="value" id="highScore">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">Level</span>
+                    <span class="value" id="level">1</span>
+                </div>
             </div>
         </header>
-        
-        <div class="game-area">
-            <canvas id="gameCanvas" width="400" height="400"></canvas>
-            <div id="gameOverScreen" class="game-over hidden">
-                <h2>Game Over!</h2>
-                <p>Your Score: <span id="finalScore">0</span></p>
-                <button id="restartBtn">Play Again</button>
+
+        <div class="game-board">
+            <canvas id="gameCanvas" width="480" height="480"></canvas>
+            
+            <!-- Start Screen -->
+            <div id="startScreen" class="overlay start-screen">
+                <div class="content">
+                    <div class="snake-logo">🐍</div>
+                    <h2>Modern Snake</h2>
+                    <p>Use arrow keys, WASD, or swipe to control</p>
+                    <button id="startBtn" class="btn btn-primary">
+                        <span class="btn-icon">🎮</span>
+                        Start Game
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div id="gameOverScreen" class="overlay game-over hidden">
+                <div class="content">
+                    <div class="game-over-icon">💀</div>
+                    <h2>Game Over!</h2>
+                    <div class="final-stats">
+                        <p>Final Score: <span id="finalScore" class="highlight">0</span></p>
+                        <p id="newRecord" class="new-record hidden">🎉 New Record!</p>
+                    </div>
+                    <div class="buttons">
+                        <button id="restartBtn" class="btn btn-primary">
+                            <span class="btn-icon">🔄</span>
+                            Play Again
+                        </button>
+                        <button id="homeBtn" class="btn btn-secondary">
+                            <span class="btn-icon">🏠</span>
+                            Home
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pause Screen -->
+            <div id="pauseScreen" class="overlay pause-screen hidden">
+                <div class="content">
+                    <div class="pause-icon">⏸️</div>
+                    <h2>Paused</h2>
+                    <button id="resumeBtn" class="btn btn-primary">
+                        <span class="btn-icon">▶️</span>
+                        Resume
+                    </button>
+                </div>
             </div>
         </div>
-        
+
         <div class="controls">
-            <p>Use arrow keys or WASD to control the snake</p>
+            <div class="control-section">
+                <h3>Desktop Controls</h3>
+                <div class="keyboard-controls">
+                    <div class="key-group">
+                        <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd>
+                        <span>or</span>
+                        <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+                    </div>
+                    <div class="key-info">
+                        <kbd>Space</kbd> Pause/Resume
+                    </div>
+                </div>
+            </div>
+
             <div class="mobile-controls">
-                <div class="control-row">
-                    <button id="upBtn">↑</button>
+                <h3>Touch Controls</h3>
+                <div class="touch-pad">
+                    <button class="touch-btn" id="upBtn" data-direction="up">↑</button>
+                    <div class="middle-row">
+                        <button class="touch-btn" id="leftBtn" data-direction="left">←</button>
+                        <button class="touch-btn pause-btn" id="pauseBtn">⏸️</button>
+                        <button class="touch-btn" id="rightBtn" data-direction="right">→</button>
+                    </div>
+                    <button class="touch-btn" id="downBtn" data-direction="down">↓</button>
                 </div>
-                <div class="control-row">
-                    <button id="leftBtn">←</button>
-                    <button id="downBtn">↓</button>
-                    <button id="rightBtn">→</button>
-                </div>
+            </div>
+        </div>
+
+        <div class="game-info">
+            <div class="info-card">
+                <h3>🎯 Objective</h3>
+                <p>Eat the red food to grow and increase your score. Avoid hitting walls and yourself!</p>
+            </div>
+            <div class="info-card">
+                <h3>⚡ Features</h3>
+                <ul>
+                    <li>Progressive difficulty</li>
+                    <li>Smooth animations</li>
+                    <li>Local high scores</li>
+                    <li>Mobile friendly</li>
+                </ul>
             </div>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
